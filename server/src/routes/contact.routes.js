@@ -1,11 +1,12 @@
 const express = require('express');
-const { getAllContacts, createContact, updateContact, deleteContact } = require('../controllers/contactController');
-const requireAuth = require('../middleware/auth');
+const { getAllContacts, createContact, updateContact, deleteContact } = require('../controllers/contact.controller');
+const authMiddleware = require('../middlewares/auth.middleware');
+const { validateContact } = require('../middlewares/validate.middleware');
 
 const router = express.Router();
 
 // Appliquer l'authentification à toutes les routes
-router.use(requireAuth);
+router.use(authMiddleware);
 
 /**
  * @swagger
@@ -31,6 +32,20 @@ router.use(requireAuth);
  *         firstName: Jean
  *         lastName: Dupont
  *         phone: "0123456789"
+ *     ContactResponse:
+ *       type: object
+ *       properties:
+ *         success:
+ *           type: boolean
+ *         message:
+ *           type: string
+ *         data:
+ *           type: object
+ *           properties:
+ *             contacts:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Contact'
  */
 
 /**
@@ -47,14 +62,7 @@ router.use(requireAuth);
  *         content:
  *           application/json:
  *             schema:
- *               type: object
- *               properties:
- *                 message:
- *                   type: string
- *                 contacts:
- *                   type: array
- *                   items:
- *                     $ref: '#/components/schemas/Contact'
+ *               $ref: '#/components/schemas/ContactResponse'
  */
 router.get('/', getAllContacts);
 
@@ -75,19 +83,10 @@ router.get('/', getAllContacts);
  *     responses:
  *       201:
  *         description: Contact créé avec succès
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 message:
- *                   type: string
- *                 contact:
- *                   $ref: '#/components/schemas/Contact'
  *       400:
  *         description: Erreur de validation
  */
-router.post('/', createContact);
+router.post('/', validateContact, createContact);
 
 /**
  * @swagger
@@ -116,7 +115,7 @@ router.post('/', createContact);
  *       404:
  *         description: Contact non trouvé
  */
-router.patch('/:id', updateContact);
+router.patch('/:id', validateContact, updateContact);
 
 /**
  * @swagger
@@ -136,14 +135,6 @@ router.patch('/:id', updateContact);
  *     responses:
  *       200:
  *         description: Contact supprimé avec succès
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 message:
- *                   type: string
- *                   example: "Contact supprimé avec succès"
  *       404:
  *         description: Contact non trouvé
  */

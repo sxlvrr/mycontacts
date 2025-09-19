@@ -1,43 +1,47 @@
 const express = require("express");
-const cors = require("cors");
-const mongoose = require("mongoose");
-const { swaggerUi, specs } = require("./utils/swagger");
-const requireAuth = require("./middleware/auth");
 require("dotenv").config();
+
+// Imports de configuration
+const corsMiddleware = require("./config/cors");
+const connectDatabase = require("./config/db");
+const { swaggerUi, specs } = require("./config/swagger");
+
+// Imports de middlewares
+const authMiddleware = require("./middlewares/auth.middleware");
+const errorMiddleware = require("./middlewares/error.middleware");
+
+// Import des routes
+const routes = require("./routes");
+
+// Utilitaires
+const { successResponse } = require("./utils/apiResponse");
 
 const app = express();
 
-// Middleware
-app.use(cors());
+// Middlewares globaux
+app.use(corsMiddleware);
 app.use(express.json());
 
-// Connexion MongoDB
-mongoose
-  .connect(process.env.MONGODB_URI)
-  .then(() => console.log("MongoDB connecté"))
-  .catch((err) => console.error("Erreur MongoDB:", err));
+// Connexion à la base de données
+connectDatabase();
 
 // Documentation Swagger
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs));
 
-// Routes
-app.use("/auth", require("./routes/auth"));
-app.use("/contacts", require("./routes/contacts"));
+// Routes principales
+app.use("/", routes);
 
 // Route de test protégée
-app.get("/profile", requireAuth, (req, res) => {
-  res.json({
-    message: "Profil utilisateur",
-    user: req.user,
+app.get("/profile", authMiddleware, (req, res) => {
+  return successResponse(res, 200, "Profil utilisateur", {
+    user: {
+      id: req.user._id,
+      email: req.user.email
+    }
   });
 });
 
-// Route de base
-app.get("/", (req, res) => {
-  res.json({
-    message: "API MyContacts - Jour 1",
-    documentation: "/api-docs",
-  });
-});
+// Middleware de gestion d'erreurs (doit être en dernier)
+app.use(errorMiddleware);
 
 module.exports = app;

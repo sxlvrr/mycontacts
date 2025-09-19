@@ -1,5 +1,6 @@
 const express = require('express');
-const { register, login } = require('../controllers/authController');
+const { register, login } = require('../controllers/auth.controller');
+const { validateRegister, validateLogin } = require('../middlewares/validate.middleware');
 
 const router = express.Router();
 
@@ -27,17 +28,22 @@ const router = express.Router();
  *     AuthResponse:
  *       type: object
  *       properties:
+ *         success:
+ *           type: boolean
  *         message:
  *           type: string
- *         token:
- *           type: string
- *         user:
+ *         data:
  *           type: object
  *           properties:
- *             id:
+ *             token:
  *               type: string
- *             email:
- *               type: string
+ *             user:
+ *               type: object
+ *               properties:
+ *                 id:
+ *                   type: string
+ *                 email:
+ *                   type: string
  */
 
 /**
@@ -62,7 +68,7 @@ const router = express.Router();
  *       400:
  *         description: Erreur de validation ou email déjà utilisé
  */
-router.post('/register', register);
+router.post('/register', validateRegister, register);
 
 /**
  * @swagger
@@ -86,6 +92,6 @@ router.post('/register', register);
  *       401:
  *         description: Email ou mot de passe incorrect
  */
-router.post('/login', login);
+router.post('/login', validateLogin, login);
 
 module.exports = router;
