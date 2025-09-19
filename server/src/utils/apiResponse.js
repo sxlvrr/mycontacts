@@ -5,6 +5,7 @@ const successResponse = (res, statusCode, message, data = null) => {
   const response = {
     success: true,
     message,
+    timestamp: new Date().toISOString(),
     ...(data && { data })
   };
   
@@ -17,8 +18,12 @@ const successResponse = (res, statusCode, message, data = null) => {
 const errorResponse = (res, statusCode, message, errors = null) => {
   const response = {
     success: false,
-    message,
-    ...(errors && { errors })
+    error: {
+      code: statusCode,
+      message,
+      timestamp: new Date().toISOString(),
+      ...(errors && { details: errors })
+    }
   };
   
   return res.status(statusCode).json(response);
@@ -31,8 +36,32 @@ const validationErrorResponse = (res, errors) => {
   return errorResponse(res, 400, 'Erreurs de validation', errors);
 };
 
+/**
+ * Réponse d'erreur d'authentification
+ */
+const unauthorizedResponse = (res, message = 'Non autorisé') => {
+  return errorResponse(res, 401, message);
+};
+
+/**
+ * Réponse d'erreur de ressource non trouvée
+ */
+const notFoundResponse = (res, resource = 'Ressource') => {
+  return errorResponse(res, 404, `${resource} non trouvé(e)`);
+};
+
+/**
+ * Réponse d'erreur serveur
+ */
+const serverErrorResponse = (res, message = 'Erreur interne du serveur') => {
+  return errorResponse(res, 500, message);
+};
+
 module.exports = {
   successResponse,
   errorResponse,
   validationErrorResponse,
+  unauthorizedResponse,
+  notFoundResponse,
+  serverErrorResponse,
 };

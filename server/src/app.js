@@ -8,7 +8,7 @@ const { swaggerUi, specs } = require("./config/swagger");
 
 // Imports de middlewares
 const authMiddleware = require("./middlewares/auth.middleware");
-const errorMiddleware = require("./middlewares/error.middleware");
+const { errorMiddleware, notFoundMiddleware } = require("./middlewares/error.middleware");
 
 // Import des routes
 const routes = require("./routes");
@@ -40,6 +40,9 @@ app.get("/profile", authMiddleware, (req, res) => {
     }
   });
 });
+
+// Middleware pour routes non trouvées
+app.use(notFoundMiddleware);
 
 // Middleware de gestion d'erreurs (doit être en dernier)
 app.use(errorMiddleware);

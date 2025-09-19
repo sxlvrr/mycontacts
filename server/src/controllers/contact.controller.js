@@ -1,5 +1,5 @@
 const contactService = require('../services/contact.service');
-const { successResponse, errorResponse } = require('../utils/apiResponse');
+const { successResponse, errorResponse, notFoundResponse } = require('../utils/apiResponse');
 
 /**
  * Récupère tous les contacts de l'utilisateur
@@ -12,7 +12,7 @@ const getAllContacts = async (req, res) => {
       return successResponse(res, 200, 'Aucun contact trouvé', { contacts: [] });
     }
     
-    return successResponse(res, 200, 'Contacts récupérés avec succès', { contacts });
+    return successResponse(res, 200, `${contacts.length} contact(s) récupéré(s) avec succès`, { contacts });
   } catch (error) {
     return errorResponse(res, 500, error.message);
   }
@@ -39,7 +39,7 @@ const updateContact = async (req, res) => {
     return successResponse(res, 200, 'Contact mis à jour avec succès', { contact });
   } catch (error) {
     if (error.message === 'Contact non trouvé') {
-      return errorResponse(res, 404, error.message);
+      return notFoundResponse(res, 'Contact');
     }
     return errorResponse(res, 400, error.message);
   }
@@ -54,7 +54,7 @@ const deleteContact = async (req, res) => {
     return successResponse(res, 200, 'Contact supprimé avec succès');
   } catch (error) {
     if (error.message === 'Contact non trouvé') {
-      return errorResponse(res, 404, error.message);
+      return notFoundResponse(res, 'Contact');
     }
     return errorResponse(res, 400, error.message);
   }
