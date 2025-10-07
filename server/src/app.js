@@ -25,6 +25,20 @@ app.use(express.json());
 // Connexion à la base de données
 connectDatabase();
 
+// Route racine pour vérifier que l'API fonctionne
+app.get("/", (req, res) => {
+  return successResponse(res, 200, "API MyContacts", {
+    message: "Bienvenue sur l'API MyContacts",
+    version: "1.0.0",
+    status: "running",
+    endpoints: {
+      documentation: "/api-docs",
+      auth: "/api/auth",
+      contacts: "/api/contacts"
+    }
+  });
+});
+
 // Documentation Swagger
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs));
 
