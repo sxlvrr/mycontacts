@@ -5,7 +5,6 @@ const { validateContact } = require('../middlewares/validate.middleware');
 
 const router = express.Router();
 
-// Appliquer l'authentification à toutes les routes
 router.use(authMiddleware);
 
 /**
