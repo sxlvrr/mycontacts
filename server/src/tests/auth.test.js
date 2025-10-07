@@ -5,19 +5,12 @@ const User = require('../models/user.model');
 
 describe('Tests Authentification', () => {
   beforeAll(async () => {
-    // Connexion à une base de test
-    if (mongoose.connection.readyState === 0) {
-      await mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/mycontacts-test', {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-      });
-    }
+    // La connexion est déjà gérée par app.js
   });
 
   afterAll(async () => {
-    // Nettoyage et déconnexion
+    // Nettoyage
     await User.deleteMany({});
-    await mongoose.connection.close();
   });
 
   beforeEach(async () => {
@@ -91,12 +84,15 @@ describe('Tests Authentification', () => {
   });
 
   describe('POST /api/auth/login', () => {
+    let testEmail;
+    
     beforeEach(async () => {
-      // Créer un utilisateur pour les tests de login
+      // Créer un utilisateur unique pour les tests de login
+      testEmail = `login-${Date.now()}@example.com`;
       await request(app)
         .post('/api/auth/register')
         .send({
-          email: 'login@example.com',
+          email: testEmail,
           password: 'password123'
         });
     });
@@ -105,14 +101,14 @@ describe('Tests Authentification', () => {
       const response = await request(app)
         .post('/api/auth/login')
         .send({
-          email: 'login@example.com',
+          email: testEmail,
           password: 'password123'
         })
         .expect(200);
 
       expect(response.body.success).toBe(true);
       expect(response.body.data).toHaveProperty('token');
-      expect(response.body.data.user).toHaveProperty('email', 'login@example.com');
+      expect(response.body.data.user).toHaveProperty('email', testEmail);
     });
 
     it('devrait rejeter un email inexistant', async () => {
@@ -131,7 +127,7 @@ describe('Tests Authentification', () => {
       const response = await request(app)
         .post('/api/auth/login')
         .send({
-          email: 'login@example.com',
+          email: testEmail,
           password: 'wrongpassword'
         })
         .expect(401);
@@ -143,7 +139,7 @@ describe('Tests Authentification', () => {
       const response = await request(app)
         .post('/api/auth/login')
         .send({
-          email: 'login@example.com'
+          email: testEmail
           // password manquant
         })
         .expect(400);
