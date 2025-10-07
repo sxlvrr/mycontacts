@@ -1,84 +1,165 @@
-# MyContacts - Gestionnaire de Contacts Full-Stack# 📱 MyContacts - Application Full-Stack de Gestion de Contacts
+# MyContacts# MyContacts - Gestionnaire de Contacts Full-Stack# 📱 MyContacts - Application Full-Stack de Gestion de Contacts
 
 
 
-Application de gestion de contacts avec authentification JWT, développée avec React, Node.js, Express et MongoDB.> Application moderne de gestion de contacts développée avec React, Node.js, Express et MongoDB. Intègre une authentification JWT sécurisée et une architecture MVC professionnelle.
+Application de gestion de contacts avec authentification JWT.
 
 
 
----[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+---Application de gestion de contacts avec authentification JWT, développée avec React, Node.js, Express et MongoDB.> Application moderne de gestion de contacts développée avec React, Node.js, Express et MongoDB. Intègre une authentification JWT sécurisée et une architecture MVC professionnelle.
 
-[![Node.js](https://img.shields.io/badge/Node.js-18.x-green.svg)](https://nodejs.org/)
 
-## 🚀 Déploiement en Ligne[![React](https://img.shields.io/badge/React-19.x-blue.svg)](https://reactjs.org/)
 
-[![MongoDB](https://img.shields.io/badge/MongoDB-8.x-green.svg)](https://www.mongodb.com/)
+## 🌐 Déploiement en Ligne
 
-- **Frontend (Netlify)** : [Votre URL Netlify à ajouter]
 
-- **Backend (Render)** : https://mycontacts-k14l.onrender.com---
 
-- **Documentation API (Swagger)** : https://mycontacts-k14l.onrender.com/api-docs
+- **Application** : https://mycontactsmb.netlify.app/---[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
-## 📋 **Table des Matières**
+- **API** : https://mycontacts-k14l.onrender.com
 
----
+- **Documentation Swagger** : https://mycontacts-k14l.onrender.com/api-docs[![Node.js](https://img.shields.io/badge/Node.js-18.x-green.svg)](https://nodejs.org/)
 
-- [Aperçu](#aperçu)
 
-## ⚡ Installation Rapide- [Fonctionnalités](#fonctionnalités)
 
-- [Technologies](#technologies)
+---## 🚀 Déploiement en Ligne[![React](https://img.shields.io/badge/React-19.x-blue.svg)](https://reactjs.org/)
 
-### Prérequis- [Architecture](#architecture)
 
-- Node.js >= 18- [Installation](#installation)
 
-- MongoDB (local ou Atlas)- [Configuration](#configuration)
+## ⚡ Setup Local[![MongoDB](https://img.shields.io/badge/MongoDB-8.x-green.svg)](https://www.mongodb.com/)
 
-- [Utilisation](#utilisation)
 
-### Setup- [Tests](#tests)
 
-- [API Documentation](#api-documentation)
+```bash- **Frontend (Netlify)** : [Votre URL Netlify à ajouter]
 
-```bash- [Déploiement](#déploiement)
+# 1. Cloner le projet
 
-# 1. Cloner le projet- [Identifiants de Test](#identifiants-de-test)
-
-git clone https://github.com/sxlvrr/mycontacts.git- [Auteur](#auteur)
+git clone https://github.com/sxlvrr/mycontacts.git- **Backend (Render)** : https://mycontacts-k14l.onrender.com---
 
 cd mycontacts
 
+- **Documentation API (Swagger)** : https://mycontacts-k14l.onrender.com/api-docs
+
+# 2. Installer les dépendances
+
+npm run install-all## 📋 **Table des Matières**
+
+
+
+# 3. Configurer l'environnement---
+
+# server/.env
+
+MONGODB_URI=mongodb://localhost:27017/mycontacts- [Aperçu](#aperçu)
+
+PORT=5000
+
+JWT_SECRET=votre_secret## ⚡ Installation Rapide- [Fonctionnalités](#fonctionnalités)
+
+FRONTEND_URL=http://localhost:3000
+
+- [Technologies](#technologies)
+
+# client/.env
+
+REACT_APP_API_URL=http://localhost:5000/api### Prérequis- [Architecture](#architecture)
+
+
+
+# 4. Lancer l'application- Node.js >= 18- [Installation](#installation)
+
+npm run dev
+
+```- MongoDB (local ou Atlas)- [Configuration](#configuration)
+
+
+
+---- [Utilisation](#utilisation)
+
+
+
+## 📋 Scripts### Setup- [Tests](#tests)
+
+
+
+```bash- [API Documentation](#api-documentation)
+
+npm run dev              # Lancer frontend + backend
+
+npm run server           # Backend uniquement```bash- [Déploiement](#déploiement)
+
+npm run client           # Frontend uniquement
+
+npm run install-all      # Installer dépendances# 1. Cloner le projet- [Identifiants de Test](#identifiants-de-test)
+
+```
+
+git clone https://github.com/sxlvrr/mycontacts.git- [Auteur](#auteur)
+
 ---
 
-# 2. Installer toutes les dépendances
+cd mycontacts
 
-npm run install-all## 🎯 **Aperçu**
+## 🔑 Identifiants de Test
+
+---
+
+```
+
+Email    : demo@mycontacts.com# 2. Installer toutes les dépendances
+
+Password : Demo123456
+
+```npm run install-all## 🎯 **Aperçu**
 
 
 
-# 3. Configuration Backend - créer server/.envMyContacts est une application full-stack permettant de gérer ses contacts personnels de manière sécurisée. Chaque utilisateur dispose de son propre espace protégé par authentification JWT.
+---
 
-MONGODB_URI=mongodb://localhost:27017/mycontacts
 
-PORT=5000### Captures d'écran
 
-JWT_SECRET=votre_secret_securise
+## 📡 Endpoints API# 3. Configuration Backend - créer server/.envMyContacts est une application full-stack permettant de gérer ses contacts personnels de manière sécurisée. Chaque utilisateur dispose de son propre espace protégé par authentification JWT.
+
+
+
+### AuthentificationMONGODB_URI=mongodb://localhost:27017/mycontacts
+
+
+
+| Méthode | Endpoint | Description |PORT=5000### Captures d'écran
+
+|---------|----------|-------------|
+
+| POST | `/api/auth/register` | Inscription |JWT_SECRET=votre_secret_securise
+
+| POST | `/api/auth/login` | Connexion |
 
 FRONTEND_URL=http://localhost:3000**Page de connexion**
 
+### Contacts (authentification requise)
+
 ![Login Page](./docs/screenshots/login.png)
 
-# 4. Configuration Frontend - créer client/.env
+| Méthode | Endpoint | Description |
 
-REACT_APP_API_URL=http://localhost:5000/api**Liste de contacts**
+|---------|----------|-------------|# 4. Configuration Frontend - créer client/.env
 
-![Contacts Page](./docs/screenshots/contacts.png)
+| GET | `/api/contacts` | Liste des contacts |
 
-# 5. Lancer l'application
+| POST | `/api/contacts` | Créer un contact |REACT_APP_API_URL=http://localhost:5000/api**Liste de contacts**
 
-npm run dev---
+| PATCH | `/api/contacts/:id` | Modifier un contact |
+
+| DELETE | `/api/contacts/:id` | Supprimer un contact |![Contacts Page](./docs/screenshots/contacts.png)
+
+
+
+---# 5. Lancer l'application
+
+
+
+**Auteur** : Mathis Bodelot | **Licence** : MITnpm run dev---
+
 
 ```
 
