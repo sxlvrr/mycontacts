@@ -1,242 +1,481 @@
-# 📱 MyContacts - Application Full-Stack de Gestion de Contacts
+# MyContacts - Gestionnaire de Contacts Full-Stack# 📱 MyContacts - Application Full-Stack de Gestion de Contacts
 
-> Application moderne de gestion de contacts développée avec React, Node.js, Express et MongoDB. Intègre une authentification JWT sécurisée et une architecture MVC professionnelle.
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+
+Application de gestion de contacts avec authentification JWT, développée avec React, Node.js, Express et MongoDB.> Application moderne de gestion de contacts développée avec React, Node.js, Express et MongoDB. Intègre une authentification JWT sécurisée et une architecture MVC professionnelle.
+
+
+
+---[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+
 [![Node.js](https://img.shields.io/badge/Node.js-18.x-green.svg)](https://nodejs.org/)
-[![React](https://img.shields.io/badge/React-19.x-blue.svg)](https://reactjs.org/)
+
+## 🚀 Déploiement en Ligne[![React](https://img.shields.io/badge/React-19.x-blue.svg)](https://reactjs.org/)
+
 [![MongoDB](https://img.shields.io/badge/MongoDB-8.x-green.svg)](https://www.mongodb.com/)
 
----
+- **Frontend (Netlify)** : [Votre URL Netlify à ajouter]
+
+- **Backend (Render)** : https://mycontacts-k14l.onrender.com---
+
+- **Documentation API (Swagger)** : https://mycontacts-k14l.onrender.com/api-docs
 
 ## 📋 **Table des Matières**
 
+---
+
 - [Aperçu](#aperçu)
-- [Fonctionnalités](#fonctionnalités)
+
+## ⚡ Installation Rapide- [Fonctionnalités](#fonctionnalités)
+
 - [Technologies](#technologies)
-- [Architecture](#architecture)
-- [Installation](#installation)
-- [Configuration](#configuration)
+
+### Prérequis- [Architecture](#architecture)
+
+- Node.js >= 18- [Installation](#installation)
+
+- MongoDB (local ou Atlas)- [Configuration](#configuration)
+
 - [Utilisation](#utilisation)
-- [Tests](#tests)
+
+### Setup- [Tests](#tests)
+
 - [API Documentation](#api-documentation)
-- [Déploiement](#déploiement)
-- [Identifiants de Test](#identifiants-de-test)
-- [Auteur](#auteur)
+
+```bash- [Déploiement](#déploiement)
+
+# 1. Cloner le projet- [Identifiants de Test](#identifiants-de-test)
+
+git clone https://github.com/sxlvrr/mycontacts.git- [Auteur](#auteur)
+
+cd mycontacts
 
 ---
 
-## 🎯 **Aperçu**
+# 2. Installer toutes les dépendances
 
-MyContacts est une application full-stack permettant de gérer ses contacts personnels de manière sécurisée. Chaque utilisateur dispose de son propre espace protégé par authentification JWT.
+npm run install-all## 🎯 **Aperçu**
 
-### Captures d'écran
 
-**Page de connexion**
+
+# 3. Configuration Backend - créer server/.envMyContacts est une application full-stack permettant de gérer ses contacts personnels de manière sécurisée. Chaque utilisateur dispose de son propre espace protégé par authentification JWT.
+
+MONGODB_URI=mongodb://localhost:27017/mycontacts
+
+PORT=5000### Captures d'écran
+
+JWT_SECRET=votre_secret_securise
+
+FRONTEND_URL=http://localhost:3000**Page de connexion**
+
 ![Login Page](./docs/screenshots/login.png)
 
-**Liste de contacts**
+# 4. Configuration Frontend - créer client/.env
+
+REACT_APP_API_URL=http://localhost:5000/api**Liste de contacts**
+
 ![Contacts Page](./docs/screenshots/contacts.png)
 
----
+# 5. Lancer l'application
+
+npm run dev---
+
+```
 
 ## ✨ **Fonctionnalités**
 
-### Authentification
-- ✅ Inscription avec validation email unique
-- ✅ Connexion sécurisée avec JWT
+L'application démarre sur :
+
+- Frontend : http://localhost:3000### Authentification
+
+- Backend : http://localhost:5000- ✅ Inscription avec validation email unique
+
+- Swagger : http://localhost:5000/api-docs- ✅ Connexion sécurisée avec JWT
+
 - ✅ Hashage des mots de passe avec bcrypt
-- ✅ Protection des routes côté frontend et backend
+
+---- ✅ Protection des routes côté frontend et backend
+
 - ✅ Déconnexion automatique en cas de token expiré
 
+## 📋 Scripts Disponibles
+
 ### Gestion des Contacts
-- ✅ Affichage de la liste des contacts personnels
-- ✅ Ajout d'un nouveau contact (formulaire modal)
-- ✅ Modification d'un contact existant
-- ✅ Suppression avec confirmation
-- ✅ Isolation des données par utilisateur
 
-### Qualité & Documentation
+```bash- ✅ Affichage de la liste des contacts personnels
+
+npm run dev              # Lancer frontend + backend- ✅ Ajout d'un nouveau contact (formulaire modal)
+
+npm run server           # Backend uniquement- ✅ Modification d'un contact existant
+
+npm run client           # Frontend uniquement- ✅ Suppression avec confirmation
+
+npm run install-all      # Installer toutes les dépendances- ✅ Isolation des données par utilisateur
+
+cd server && npm test    # Tests backend
+
+```### Qualité & Documentation
+
 - ✅ Tests unitaires Jest avec couverture > 70%
-- ✅ Documentation API Swagger/OpenAPI
+
+---- ✅ Documentation API Swagger/OpenAPI
+
 - ✅ Architecture MVC professionnelle
-- ✅ Validation des données (côté client et serveur)
+
+## 🔑 Identifiants de Test- ✅ Validation des données (côté client et serveur)
+
 - ✅ Gestion d'erreurs centralisée
-- ✅ Réponses API standardisées
 
----
+Pour tester rapidement l'application :- ✅ Réponses API standardisées
 
-## 🛠️ **Technologies**
+
+
+```---
+
+Email    : demo@mycontacts.com
+
+Password : Demo123456## 🛠️ **Technologies**
+
+```
 
 ### Frontend
-- **React 19** - Framework UI
+
+Ou créez un nouveau compte via l'inscription.- **React 19** - Framework UI
+
 - **React Router 7** - Routing SPA
-- **Axios** - Client HTTP
+
+---- **Axios** - Client HTTP
+
 - **Context API** - Gestion d'état global
 
+## 📡 Endpoints API
+
 ### Backend
-- **Node.js 18+** - Runtime JavaScript
+
+### Authentification- **Node.js 18+** - Runtime JavaScript
+
 - **Express 5** - Framework web
-- **MongoDB & Mongoose** - Base de données NoSQL
-- **JWT (jsonwebtoken)** - Authentification
-- **bcryptjs** - Hashage de mots de passe
-- **Swagger** - Documentation API
 
-### DevOps & Tests
+| Méthode | Endpoint | Description |- **MongoDB & Mongoose** - Base de données NoSQL
+
+|---------|----------|-------------|- **JWT (jsonwebtoken)** - Authentification
+
+| POST | `/api/auth/register` | Inscription |- **bcryptjs** - Hashage de mots de passe
+
+| POST | `/api/auth/login` | Connexion |- **Swagger** - Documentation API
+
+
+
+### Contacts (authentification requise)### DevOps & Tests
+
 - **Jest** - Tests unitaires
-- **Supertest** - Tests d'API
-- **Nodemon** - Hot reload serveur
-- **Concurrently** - Lancement parallèle client/serveur
 
----
+| Méthode | Endpoint | Description |- **Supertest** - Tests d'API
+
+|---------|----------|-------------|- **Nodemon** - Hot reload serveur
+
+| GET | `/api/contacts` | Liste des contacts |- **Concurrently** - Lancement parallèle client/serveur
+
+| POST | `/api/contacts` | Créer un contact |
+
+| PATCH | `/api/contacts/:id` | Modifier un contact |---
+
+| DELETE | `/api/contacts/:id` | Supprimer un contact |
 
 ## 🏗️ **Architecture**
 
+### Exemple de requête
+
 ```
-mycontacts-final/
-│
-├── client/                     # Application React (Frontend)
-│   ├── public/                 # Fichiers statiques
+
+```bashmycontacts-final/
+
+# Inscription│
+
+POST http://localhost:5000/api/auth/register├── client/                     # Application React (Frontend)
+
+Content-Type: application/json│   ├── public/                 # Fichiers statiques
+
 │   ├── src/
-│   │   ├── components/
-│   │   │   ├── auth/           # Login, Register
-│   │   │   ├── common/         # ProtectedRoute
-│   │   │   └── contacts/       # ContactsPage
+
+{│   │   ├── components/
+
+  "email": "user@example.com",│   │   │   ├── auth/           # Login, Register
+
+  "password": "motdepasse123"│   │   │   ├── common/         # ProtectedRoute
+
+}│   │   │   └── contacts/       # ContactsPage
+
 │   │   ├── contexts/           # AuthContext (gestion auth globale)
-│   │   ├── services/           # API calls (authService, contactService)
-│   │   ├── App.js              # Routing principal
-│   │   └── index.js            # Point d'entrée React
-│   └── package.json
+
+# Créer un contact (avec token JWT)│   │   ├── services/           # API calls (authService, contactService)
+
+POST http://localhost:5000/api/contacts│   │   ├── App.js              # Routing principal
+
+Authorization: Bearer <votre_token>│   │   └── index.js            # Point d'entrée React
+
+Content-Type: application/json│   └── package.json
+
 │
-├── server/                     # API Node.js/Express (Backend)
-│   ├── src/
-│   │   ├── config/             # Configuration (DB, CORS, Swagger)
-│   │   ├── controllers/        # Gestion des requêtes HTTP
-│   │   ├── middlewares/        # Auth, validation, erreurs
-│   │   ├── models/             # Schémas Mongoose (User, Contact)
+
+{├── server/                     # API Node.js/Express (Backend)
+
+  "firstName": "Jean",│   ├── src/
+
+  "lastName": "Dupont",│   │   ├── config/             # Configuration (DB, CORS, Swagger)
+
+  "phone": "0612345678"│   │   ├── controllers/        # Gestion des requêtes HTTP
+
+}│   │   ├── middlewares/        # Auth, validation, erreurs
+
+```│   │   ├── models/             # Schémas Mongoose (User, Contact)
+
 │   │   ├── routes/             # Définition des endpoints
-│   │   ├── services/           # Logique métier
+
+---│   │   ├── services/           # Logique métier
+
 │   │   ├── utils/              # Utilitaires (apiResponse)
-│   │   ├── tests/              # Tests unitaires Jest
+
+## 🛠️ Technologies Utilisées│   │   ├── tests/              # Tests unitaires Jest
+
 │   │   ├── app.js              # Configuration Express
-│   │   └── server.js           # Démarrage serveur
-│   ├── jest.config.js          # Configuration tests
-│   └── package.json
-│
-├── package.json                # Scripts racine (install-all, dev)
+
+**Frontend**│   │   └── server.js           # Démarrage serveur
+
+- React 19│   ├── jest.config.js          # Configuration tests
+
+- React Router 7│   └── package.json
+
+- Axios│
+
+- Context API├── package.json                # Scripts racine (install-all, dev)
+
 └── README.md                   # Documentation (ce fichier)
-```
 
-### Flux de données
+**Backend**```
 
-```
-┌─────────────────────────────────────────────────────────┐
-│                   CLIENT (React)                         │
+- Node.js 18+
+
+- Express 5### Flux de données
+
+- MongoDB + Mongoose
+
+- JWT (jsonwebtoken)```
+
+- bcryptjs┌─────────────────────────────────────────────────────────┐
+
+- Swagger/OpenAPI│                   CLIENT (React)                         │
+
 │  Browser → React Router → Context API → Axios Services  │
-└────────────────────────┬────────────────────────────────┘
-                         │ HTTP + JWT Token
-                         ↓
-┌─────────────────────────────────────────────────────────┐
+
+**Tests & DevOps**└────────────────────────┬────────────────────────────────┘
+
+- Jest + Supertest (couverture > 70%)                         │ HTTP + JWT Token
+
+- Nodemon                         ↓
+
+- Concurrently┌─────────────────────────────────────────────────────────┐
+
 │                   SERVER (Express)                       │
-│  Routes → Auth Middleware → Controllers → Services      │
+
+---│  Routes → Auth Middleware → Controllers → Services      │
+
 │                         ↓                                │
-│                  MongoDB (Mongoose)                      │
+
+## 🏗️ Architecture│                  MongoDB (Mongoose)                      │
+
 └─────────────────────────────────────────────────────────┘
+
+``````
+
+mycontacts-final/
+
+├── client/                 # Application React---
+
+│   ├── src/
+
+│   │   ├── components/     # Composants UI## 🚀 **Installation**
+
+│   │   ├── contexts/       # AuthContext
+
+│   │   ├── services/       # API calls### Prérequis
+
+│   │   └── App.js          # Routing- **Node.js** >= 18.x
+
+│   └── package.json- **npm** >= 9.x
+
+│- **MongoDB** (local ou Atlas)
+
+├── server/                 # API Express- **Git**
+
+│   ├── src/
+
+│   │   ├── config/         # DB, CORS, Swagger### Étapes d'installation
+
+│   │   ├── controllers/    # Logique HTTP
+
+│   │   ├── models/         # Schémas Mongoose```bash
+
+│   │   ├── routes/         # Endpoints# 1. Cloner le dépôt
+
+│   │   ├── middlewares/    # Auth, validationgit clone https://github.com/sxlvrr/mycontacts.git
+
+│   │   ├── services/       # Logique métiercd mycontacts
+
+│   │   └── tests/          # Tests Jest
+
+│   └── package.json# 2. Installer les dépendances (client + serveur)
+
+│npm run install-all
+
+└── package.json            # Scripts racine
+
+```# Alternative : installation manuelle
+
+npm run install-server
+
+---npm run install-client
+
 ```
+
+## 🧪 Tests
 
 ---
-
-## 🚀 **Installation**
-
-### Prérequis
-- **Node.js** >= 18.x
-- **npm** >= 9.x
-- **MongoDB** (local ou Atlas)
-- **Git**
-
-### Étapes d'installation
 
 ```bash
-# 1. Cloner le dépôt
-git clone https://github.com/sxlvrr/mycontacts.git
-cd mycontacts
 
-# 2. Installer les dépendances (client + serveur)
-npm run install-all
+cd server## ⚙️ **Configuration**
 
-# Alternative : installation manuelle
-npm run install-server
-npm run install-client
+npm test                # Tous les tests
+
+npm test -- --coverage  # Avec couverture### 1. Variables d'environnement Backend
+
 ```
-
----
-
-## ⚙️ **Configuration**
-
-### 1. Variables d'environnement Backend
 
 Créer un fichier `.env` dans le dossier `server/` :
 
+**Couverture actuelle** : > 70% (branches, fonctions, lignes)
+
 ```env
-# Base de données MongoDB
+
+---# Base de données MongoDB
+
 MONGODB_URI=mongodb://localhost:27017/mycontacts
-# OU MongoDB Atlas
+
+## 🌐 Déploiement# OU MongoDB Atlas
+
 MONGODB_URI=mongodb+srv://<user>:<password>@cluster.mongodb.net/mycontacts
 
+### Backend (Render)
+
 # Port du serveur
-PORT=5000
+
+**Build Command:** `cd server && npm install`  PORT=5000
+
+**Start Command:** `cd server && npm start`
 
 # Secret JWT (générer une chaîne aléatoire sécurisée)
-JWT_SECRET=votre_secret_jwt_super_securise_a_changer
 
-# URL du frontend (pour CORS)
-FRONTEND_URL=http://localhost:3000
+**Variables d'environnement:**JWT_SECRET=votre_secret_jwt_super_securise_a_changer
+
 ```
 
-### 2. Variables d'environnement Frontend
+MONGODB_URI=mongodb+srv://...# URL du frontend (pour CORS)
 
-Créer un fichier `.env` dans le dossier `client/` :
+JWT_SECRET=secret_securiseFRONTEND_URL=http://localhost:3000
 
-```env
-REACT_APP_API_URL=http://localhost:5000/api
+FRONTEND_URL=https://votre-app.netlify.app```
+
+PORT=5000
+
+```### 2. Variables d'environnement Frontend
+
+
+
+### Frontend (Netlify)Créer un fichier `.env` dans le dossier `client/` :
+
+
+
+**Base directory:** `client`  ```env
+
+**Build command:** `npm run build`  REACT_APP_API_URL=http://localhost:5000/api
+
+**Publish directory:** `build````
+
+
+
+**Variable d'environnement:**---
+
 ```
 
----
+REACT_APP_API_URL=https://mycontacts-k14l.onrender.com/api## 📦 **Utilisation**
 
-## 📦 **Utilisation**
+```
 
 ### Démarrage en développement
 
-#### Option 1 : Lancement simultané (recommandé)
-```bash
-# Depuis la racine du projet
-npm run dev
-```
-Démarre simultanément :
-- Backend sur `http://localhost:5000`
-- Frontend sur `http://localhost:3000`
+**Important MongoDB Atlas** : Autoriser les connexions depuis `0.0.0.0/0` (Network Access)
 
-#### Option 2 : Lancement séparé
+#### Option 1 : Lancement simultané (recommandé)
+
+---```bash
+
+# Depuis la racine du projet
+
+## 🔐 Sécuriténpm run dev
+
+```
+
+- ✅ Authentification JWT statelessDémarre simultanément :
+
+- ✅ Mots de passe hashés (bcrypt)- Backend sur `http://localhost:5000`
+
+- ✅ Protection CORS configurée- Frontend sur `http://localhost:3000`
+
+- ✅ Validation des données (client + serveur)
+
+- ✅ Isolation des données par utilisateur#### Option 2 : Lancement séparé
+
+- ✅ Routes protégées (middleware auth)
 
 **Terminal 1 - Backend :**
-```bash
+
+---```bash
+
 cd server
-npm run dev
+
+## 📚 Documentation Complètenpm run dev
+
 ```
+
+Consultez la documentation interactive Swagger : http://localhost:5000/api-docs
 
 **Terminal 2 - Frontend :**
-```bash
+
+---```bash
+
 cd client
-npm start
+
+## 👤 Auteurnpm start
+
 ```
 
-### Accès à l'application
+**Mathis Bodelot**  
 
-- **Frontend** : http://localhost:3000
+GitHub: [@sxlvrr](https://github.com/sxlvrr)### Accès à l'application
+
+
+
+---- **Frontend** : http://localhost:3000
+
 - **Backend API** : http://localhost:5000/api
-- **Documentation Swagger** : http://localhost:5000/api-docs
 
----
+## 📄 Licence- **Documentation Swagger** : http://localhost:5000/api-docs
+
+
+
+MIT - EFREI Paris 2025---
+
 
 ## 🧪 **Tests**
 
