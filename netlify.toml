@@ -9,11 +9,12 @@
   # Dossier contenant les fichiers statiques générés
   publish = "build/"
 
+# Variables d'environnement pour le build
+[build.environment]
+  REACT_APP_API_URL = "https://mycontacts-k14l.onrender.com/api"
+
 # Redirections pour le routing côté client React
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
-
-# Variables d'environnement (à configurer dans l'interface Netlify)
-# REACT_APP_API_URL = votre URL de l'API backend

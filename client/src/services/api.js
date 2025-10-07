@@ -2,10 +2,14 @@ import axios from 'axios';
 
 const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
 
+// Log pour vérifier l'URL de l'API
+console.log('🔗 API Base URL:', API_BASE_URL);
+console.log('🌍 Environment:', process.env.NODE_ENV);
+
 // Créer une instance axios avec configuration de base
 const api = axios.create({
   baseURL: API_BASE_URL,
-  timeout: 10000,
+  timeout: 30000, // Augmenté à 30s pour cold start Render
   headers: {
     'Content-Type': 'application/json',
   }
@@ -28,9 +32,18 @@ api.interceptors.request.use(
 // Intercepteur pour gérer les erreurs de réponse
 api.interceptors.response.use(
   (response) => {
+    console.log('✅ API Response:', response.config.url);
     return response.data;
   },
   (error) => {
+    console.error('❌ API Error:', {
+      url: error.config?.url,
+      method: error.config?.method,
+      status: error.response?.status,
+      message: error.message,
+      data: error.response?.data
+    });
+    
     // Gérer les erreurs d'authentification
     if (error.response?.status === 401) {
       localStorage.removeItem('token');
