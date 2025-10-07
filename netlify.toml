@@ -1,0 +1,19 @@
+# Configuration Netlify pour mycontacts
+[build]
+  # Dossier contenant l'application React à déployer
+  base = "client/"
+  
+  # Commande pour construire l'application React
+  command = "npm run build"
+  
+  # Dossier contenant les fichiers statiques générés
+  publish = "build/"
+
+# Redirections pour le routing côté client React
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Variables d'environnement (à configurer dans l'interface Netlify)
+# REACT_APP_API_URL = votre URL de l'API backend
